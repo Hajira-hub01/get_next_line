@@ -1,0 +1,5 @@
+hello, world
+how are you?
+how is life?
+this is a new line
+this is the last line
