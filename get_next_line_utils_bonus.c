@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*    get_next_line_utils_bonus.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hajmoham <hajmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/21 19:28:09 by hajmoham          #+#    #+#             */
-/*   Updated: 2024/08/23 08:39:53 by hajmoham         ###   ########.fr       */
+/*   Created: 2024/08/23 08:48:41 by hajmoham          #+#    #+#             */
+/*   Updated: 2024/08/23 08:49:03 by hajmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_strchr(const char *s, int c)
 {

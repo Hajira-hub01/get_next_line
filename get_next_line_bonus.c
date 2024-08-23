@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hajmoham <hajmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/21 19:28:03 by hajmoham          #+#    #+#             */
-/*   Updated: 2024/08/23 10:56:32 by hajmoham         ###   ########.fr       */
+/*   Created: 2024/08/23 08:48:31 by hajmoham          #+#    #+#             */
+/*   Updated: 2024/08/23 10:56:23 by hajmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*read_fd(int fd, char *temp_str, char *str)
 {
@@ -91,7 +91,7 @@ char	*next_line(char *str)
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	*str;
+	static char	*str[1024];
 	char		*temp_str;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE >= INT_MAX)
@@ -99,43 +99,47 @@ char	*get_next_line(int fd)
 	temp_str = malloc(BUFFER_SIZE + 1);
 	if (!temp_str)
 		return (NULL);
-	str = read_fd(fd, temp_str, str);
-	if (!str)
+	str[fd] = read_fd(fd, temp_str, str[fd]);
+	if (!str[fd])
 		return (NULL);
-	line = existing_line(str);
-	str = next_line(str);
+	line = existing_line(str[fd]);
+	str[fd] = next_line(str[fd]);
 	return (line);
 }
 
 // int main(void)
 // {
-// 	char *str;
-
-// 	int fd = open("example.txt", O_RDONLY);
-
-// 	while (1)
+// 	int fd1 = open("example1.txt", O_RDONLY);
+// 	int fd2 = open("example2.txt", O_RDONLY);
+// 	int fd3 = open("example3.txt", O_RDONLY);
+// 	char *str1;
+// 	char *str2;
+// 	char *str3;
+	
+//  	while (1)
 // 	{
-// 		str = get_next_line(fd);
-// 		if (!str)
-// 			break;
-// 		printf("%s", str);
-// 		free(str);
+// 			str1 = get_next_line(fd1);
+// 			str2 = get_next_line(fd2);
+// 			str3 = get_next_line(fd3);
+// 		if (str1)
+// 		{
+// 			printf("%s", str1);
+// 			free(str1);
+// 		}
+// 		if (str2)
+// 		{
+// 			printf("%s", str2);
+// 			free(str2);
+// 		}
+// 		if (str3)
+// 		{
+// 			printf("%s", str3);
+// 			free(str3);
+// 		}
+// 		if (!str1 && !str2 && !str3)
+//             break;
 // 	}
-// 	free(str);
-// }
-
-// int main(void)
-// {
-// 	char *str;
-
-// 	int fd = open("example.txt", O_RDONLY);
-// 		str = get_next_line(fd);
-
-// 	while (str)
-// 	{
-// 		printf("%s", str);
-// 		free(str);
-// 		str = get_next_line(fd);
-// 	}
-// 	free(str);
+// 	close(fd1);
+// 	close(fd2);
+// 	close(fd3);
 // }
