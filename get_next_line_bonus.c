@@ -6,7 +6,7 @@
 /*   By: hajmoham <hajmoham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 08:48:31 by hajmoham          #+#    #+#             */
-/*   Updated: 2024/08/23 10:56:23 by hajmoham         ###   ########.fr       */
+/*   Updated: 2024/08/25 12:49:47 by hajmoham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE >= INT_MAX)
 		return (NULL);
-	temp_str = malloc(BUFFER_SIZE + 1);
+	temp_str = malloc((size_t)BUFFER_SIZE + 1);
 	if (!temp_str)
 		return (NULL);
 	str[fd] = read_fd(fd, temp_str, str[fd]);
